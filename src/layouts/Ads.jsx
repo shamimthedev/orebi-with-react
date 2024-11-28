@@ -2,8 +2,8 @@ import React from "react";
 import Container from "../components/Container";
 import Flex from "../components/Flex";
 import Image from "../components/Image";
-import AdsOne from "/src//assets/ad-one.png";
-import AdsTwo from "/src//assets/ad-two.png";
+import AdsOne from "/src/assets/ad-one.png";
+import AdsTwo from "/src/assets/ad-two.png";
 import AdsThree from "/src/assets/ad-three.png";
 
 const Ads = () => {

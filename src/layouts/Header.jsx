@@ -70,12 +70,12 @@ const Header = () => {
                     <li className="duration-150 hover:font-bold">Contact</li>
                   </NavLink>
                   <NavLink
-                    to={"/journal"}
+                    to={"/cart"}
                     style={({ isActive }) => ({
                       fontWeight: isActive ? "bold" : "",
                     })}
                   >
-                    <li className="duration-150 hover:font-bold">Journal</li>
+                    <li className="duration-150 hover:font-bold">Cart</li>
                   </NavLink>
                 </Menu>
               </div>

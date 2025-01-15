@@ -16,6 +16,10 @@ export default {
         headerBg: '#F5F5F3',
         policyColor: '#6D6D6D',
         borderColor: '#F0F0F0',
+        dropDownBorderColor: '#2D2D2D',
+        dropDownMenuColor: '#ffffffb3',
+        myAccBg: '#2B2B2B',
+        arrowBg: '#979797',
       },
       backgroundImage: {
         bannerBackground: "url('/src/assets/banner-background.png')",

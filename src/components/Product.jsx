@@ -7,12 +7,12 @@ import Text from "./Text";
 import { FaHeart, FaShoppingCart } from "react-icons/fa";
 import { FaCodeCompare } from "react-icons/fa6";
 
-const Product = () => {
+const Product = ({imgSrc, badgeText, className}) => {
   return (
     <>
-      <div id="product" className="relative font-primary text-navColor group">
-        <Image imgSrc={Headphone} />
-        <Badge badgeText={"New"} className={"absolute top-5 left-5"} />
+      <div id="product" className={`relative font-primary text-navColor group  ${className}`}>
+        <Image imgSrc={imgSrc} className={'w-full'}/>
+        <Badge badgeText={badgeText} className={"absolute top-5 left-5"} />
         <div className="product-details py-7 flex justify-between">
           <Heading
             as={"h4"}
@@ -21,16 +21,16 @@ const Product = () => {
           />
           <Text as={"span"} text={"$44.00"} />
         </div>
-        <div className="product-hover-content py-6 px-7 bg-white absolute bottom-20 left-0 w-full hidden group-hover:block">
-          <div className="wish-list mb-5 flex justify-end items-center space-x-4">
+        <div className="product-hover-content py-6 px-7 bg-white absolute bottom-20 left-0 z-50 w-full opacity-0 transition-all duration-500 ease-in-out group-hover:opacity-100">
+          <div className="wish-list mb-5 flex justify-end items-center space-x-4 duration-150 hover:text-menuTxtColor hover:font-bold">
             <Text as={"p"} text={"Add to Wish List"} />
             <FaHeart />
           </div>
-          <div className="wish-list mb-5 flex justify-end items-center space-x-4">
+          <div className="wish-list mb-5 flex justify-end items-center space-x-4 duration-150 hover:text-menuTxtColor hover:font-bold">
             <Text as={"p"} text={"Compare"} />
             <FaCodeCompare />
           </div>
-          <div className="wish-list flex justify-end items-center space-x-4 font-bold text-menuTxtColor">
+          <div className="wish-list flex justify-end items-center space-x-4 duration-150 hover:text-menuTxtColor hover:font-bold">
             <Text as={"p"} text={"Add to Cart"} />
             <FaShoppingCart />
           </div>

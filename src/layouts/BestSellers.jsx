@@ -3,8 +3,13 @@ import Container from "../components/Container";
 import Heading from "../components/Heading";
 import Flex from "../components/Flex";
 import Product from "../components/Product";
+import Billi from "../assets/billi.png";
+import Jhuri from "../assets/jhuri.png";
+import SWatch from "../assets/watch.png";
+import Ghori from "../assets/ghori.png";
 
 const BestSellers = () => {
+
   return (
     <>
       <div id="bestSellersSection" className="mb-32">
@@ -17,10 +22,12 @@ const BestSellers = () => {
             }
           />
           <Flex className={"justify-between flex-wrap"}>
-            <Product />
-            <Product />
-            <Product />
-            <Product />
+          
+            <Product imgSrc={Billi} badgeText={"New"}/>
+            <Product imgSrc={Jhuri} badgeText={"New"}/>
+            <Product imgSrc={SWatch} badgeText={"New"}/>
+            <Product imgSrc={Ghori} badgeText={"New"}/>
+
           </Flex>
         </Container>
       </div>

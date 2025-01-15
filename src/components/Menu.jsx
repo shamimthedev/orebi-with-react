@@ -1,9 +1,7 @@
-import React, { Children } from 'react'
+import React, { Children } from "react";
 
-const Menu = ({className, children}) => {
-  return (
-    <ul className={`flex ${className}`}>{children}</ul>
-  )
-}
+const Menu = ({ className, children }) => {
+  return <ul className={`${className}`}>{children}</ul>;
+};
 
-export default Menu
+export default Menu;

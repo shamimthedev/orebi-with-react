@@ -21,7 +21,7 @@ const Footer = () => {
                   text={"MENU"}
                   className={"mb-4 font-bold text-menuTxtColor"}
                 />
-                <Menu className={"text-policyColor flex-col space-y-[6px]"}>
+                <Menu className={"flex text-policyColor flex-col space-y-[6px]"}>
                   <li>Home</li>
                   <li>Shop</li>
                   <li>About</li>
@@ -35,7 +35,7 @@ const Footer = () => {
                   text={"SHOP"}
                   className={"mb-4 font-bold text-menuTxtColor"}
                 />
-                <Menu className={"text-policyColor flex-col space-y-[6px]"}>
+                <Menu className={"flex text-policyColor flex-col space-y-[6px]"}>
                   <li>Category 1</li>
                   <li>Category 2</li>
                   <li>Category 3</li>
@@ -49,7 +49,7 @@ const Footer = () => {
                   text={"HELP"}
                   className={"mb-4 font-bold text-menuTxtColor"}
                 />
-                <Menu className={"text-policyColor flex-col space-y-[6px]"}>
+                <Menu className={"flex text-policyColor flex-col space-y-[6px]"}>
                   <li>Privacy Policy</li>
                   <li>Terms & Conditions</li>
                   <li>Special E-shop</li>

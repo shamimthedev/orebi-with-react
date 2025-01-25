@@ -1,4 +1,4 @@
-import React from "react";
+
 import Banner from "../layouts/Banner";
 import Policy from "../layouts/Policy";
 import Ads from "../layouts/Ads";

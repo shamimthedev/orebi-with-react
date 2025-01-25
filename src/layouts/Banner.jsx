@@ -1,9 +1,7 @@
-import { useState } from "react";
+
 import Slider from "react-slick";
 
 const Banner = () => {
-  const [activeSlide, setActiveSlide] = useState(1); // Default active slide is 1
-
   const settings = {
     dots: false,
     infinite: true,
@@ -11,25 +9,6 @@ const Banner = () => {
     slidesToScroll: 1,
     arrows: false,
     speed: 2000,
-    afterChange: (current) => {
-      setActiveSlide(current + 1); // Slider index is 0-based, so we add 1
-    },
-    // customPaging: (i) => ( ),
-    // appendDots: (dots) => ( ),
-    dotsClass: "slick-dots line-indicator",
-    // customPaging: (i) => (
-    //   <div
-    //     style={{
-    //       position: "absolute",
-    //       width: "100%",
-    //       // top: "-10px",
-    //       // opacity: 0,
-    //       bottom: '-30px'
-    //     }}
-    //   >
-    //     {i}
-    //   </div>
-    // ),
   };
 
   return (

@@ -1,13 +1,12 @@
-import React from "react";
+
 import Image from "./Image";
-import Headphone from "../assets/headphone.png";
 import Badge from "./Badge";
 import Heading from "./Heading";
 import Text from "./Text";
 import { FaHeart, FaShoppingCart } from "react-icons/fa";
 import { FaCodeCompare } from "react-icons/fa6";
 
-const Product = ({imgSrc, badgeText, className}) => {
+const Product = ({imgSrc, badgeText, className, onClick}) => {
   return (
     <>
       <div id="product" className={`relative font-primary text-navColor group  ${className}`}>
@@ -22,15 +21,15 @@ const Product = ({imgSrc, badgeText, className}) => {
           <Text as={"span"} text={"$44.00"} />
         </div>
         <div className="product-hover-content py-6 px-7 bg-white absolute bottom-20 left-0 z-50 w-full opacity-0 transition-all duration-500 ease-in-out group-hover:opacity-100">
-          <div className="wish-list mb-5 flex justify-end items-center space-x-4 duration-150 hover:text-menuTxtColor hover:font-bold">
+          <div className="wish-list mb-5 flex justify-end items-center space-x-4 duration-150 hover:text-menuTxtColor hover:font-bold cursor-pointer">
             <Text as={"p"} text={"Add to Wish List"} />
             <FaHeart />
           </div>
-          <div className="wish-list mb-5 flex justify-end items-center space-x-4 duration-150 hover:text-menuTxtColor hover:font-bold">
+          <div className="wish-list mb-5 flex justify-end items-center space-x-4 duration-150 hover:text-menuTxtColor hover:font-bold cursor-pointer">
             <Text as={"p"} text={"Compare"} />
             <FaCodeCompare />
           </div>
-          <div className="wish-list flex justify-end items-center space-x-4 duration-150 hover:text-menuTxtColor hover:font-bold">
+          <div className="add-cart flex justify-end items-center space-x-4 duration-150 hover:text-menuTxtColor hover:font-bold cursor-pointer" onClick={onClick}>
             <Text as={"p"} text={"Add to Cart"} />
             <FaShoppingCart />
           </div>

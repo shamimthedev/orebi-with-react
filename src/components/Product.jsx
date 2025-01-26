@@ -10,7 +10,7 @@ const Product = ({imgSrc, badgeText, className, onClick}) => {
   return (
     <>
       <div id="product" className={`relative font-primary text-navColor group  ${className}`}>
-        <Image imgSrc={imgSrc} className={'w-full'}/>
+        <Image imgSrc={imgSrc} className={' h-[420px] object-contain w-full'}/>
         <Badge badgeText={badgeText} className={"absolute top-5 left-5"} />
         <div className="product-details py-7 flex justify-between">
           <Heading

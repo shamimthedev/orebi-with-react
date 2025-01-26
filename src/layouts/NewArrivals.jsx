@@ -22,13 +22,25 @@ const NewArrivals = () => {
 
   const [allData, setAllData] = useState([]);
 
+  // useEffect(() => {
+  //   async function allDatas() {
+  //     const data = await axios.get("https://dummyjson.com/products");
+  //     setAllData(data.data.products);
+  //   }
+  //   allDatas();
+  // }, []);
+
+  // fetch method 
   useEffect(() => {
-    async function allDatas() {
-      const data = await axios.get("https://dummyjson.com/products");
-      setAllData(data.data.products);
-    }
-    allDatas();
-  }, []);
+    fetchData()
+  }, [])
+
+  const fetchData = async () => {
+    const data = await fetch("https://fakestoreapi.com/products")
+    const resData = await data.json()
+    console.log(resData)
+    setAllData(resData)
+  }
 
   return (
     <div id="newArrivalSection" className="mb-32">
@@ -44,7 +56,7 @@ const NewArrivals = () => {
         <Slider {...settings}>
           {allData.map((item) => (
             <div key={item.id} className="w-[24%] px-5">
-              <Product imgSrc={item.images} badgeText={"New"} className={""} />
+              <Product imgSrc={item.image} badgeText={"New"} className={""} />
             </div>
           ))}
         </Slider>

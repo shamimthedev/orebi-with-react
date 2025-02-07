@@ -1,4 +1,3 @@
-import React from 'react'
 import Image from '../components/Image'
 import ErrorAni from '../assets/error.gif'
 import { Link } from 'react-router-dom'

@@ -1,188 +1,154 @@
-import React, { useState } from "react";
-import Container from "../components/Container";
-import Flex from "../components/Flex";
-import Image from "../components/Image";
-import Logo from "../assets/logo.png";
-import Menu from "../components/Menu";
-import Text from "../components/Text";
-import menuBar from "../assets/menu-icon.svg";
-import { FaSearch, FaUser, FaShoppingCart } from "react-icons/fa";
-import { IoMdArrowDropdown } from "react-icons/io";
-import { Link } from "react-router";
-import Button from "../components/Button";
-import CartPopUp from "../assets/cart-popup.png";
-import { NavLink } from "react-router";
+import { useEffect, useState } from "react";
+import { Link, NavLink, useLocation } from "react-router-dom";
+import { MdClose } from "react-icons/md";
+import { HiMenuAlt2 } from "react-icons/hi";
+import { motion } from "framer-motion";
+import { navBarList } from "../constants";
+import { logo, logoLight } from "../assets/images";
+import Flex from "../components/designLayouts/Flex";
+import Image from "../components/designLayouts/Image";
 
 const Header = () => {
-  let [drop, setDrop] = useState(false);
-  let [accDrop, setAccDrop] = useState(false);
-  let [cartDrop, setCartDrop] = useState(false);
+  const [showMenu, setShowMenu] = useState(window.innerWidth >= 667);
+  const [sidenav, setSidenav] = useState(false);
+  const [category, setCategory] = useState(false);
+  const [brand, setBrand] = useState(false);
+  const location = useLocation();
+
+  useEffect(() => {
+    const handleResize = () => {
+      setShowMenu(window.innerWidth >= 667);
+    };
+    
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   return (
-    <>
-      <div id="headerSection">
-        <div id="topHeader" className="py-8">
-          <Container>
-            <Flex
-              className={
-                "justify-between items-center font-primary text-navColor"
-              }
-            >
-              <div className="nav-logo">
-                <Link to={"/"}>
-                  <Image imgSrc={Logo} imgAlt={Logo} />
-                </Link>
-              </div>
-              <div className="nav-links">
-                <Menu className={"flex items-center space-x-10 text-sm"}>
-                  <NavLink
-                    to={"/"}
-                    style={({ isActive }) => ({
-                      fontWeight: isActive ? "bold" : "",
-                    })}
-                  >
-                    <li className="duration-150 hover:font-bold">Home</li>
-                  </NavLink>
-
-                  <NavLink
-                    to={"/shop"}
-                    style={({ isActive }) => ({
-                      fontWeight: isActive ? "bold" : "",
-                    })}
-                  >
-                    <li className="duration-150 hover:font-bold">Shop</li>
-                  </NavLink>
-
-                  <NavLink
-                    to={"/about"}
-                    style={({ isActive }) => ({
-                      fontWeight: isActive ? "bold" : "",
-                    })}
-                  >
-                    <li className="duration-150 hover:font-bold">About</li>
-                  </NavLink>
-                  <NavLink
-                    to={"/contact"}
-                    style={({ isActive }) => ({
-                      fontWeight: isActive ? "bold" : "",
-                    })}
-                  >
-                    <li className="duration-150 hover:font-bold">Contact</li>
-                  </NavLink>
-                  <NavLink
-                    to={"/cart"}
-                    style={({ isActive }) => ({
-                      fontWeight: isActive ? "bold" : "",
-                    })}
-                  >
-                    <li className="duration-150 hover:font-bold">Cart</li>
-                  </NavLink>
-                </Menu>
-              </div>
-              <div className="nav-lang">
-                <Flex className={"space-x-5"}>
-                  <Text as={"p"} text={"EN"} className={"font-bold"} />
-                  <Text as={"p"} text={"RU"} />
-                </Flex>
-              </div>
-            </Flex>
-          </Container>
-        </div>
-        <div id="lowerHeader" className="py-6 bg-headerBg">
-          <Container>
-            <Flex
-              className={"font-primary text-sm justify-between items-center"}
-            >
-              <div
-                className="menu-part flex items-center space-x-3 relative cursor-pointer"
-                onClick={() => setDrop(!drop)}
+    <div className="w-full h-20 bg-white sticky top-0 z-50 border-b-[1px] border-b-gray-200">
+      <nav className="h-full px-4 max-w-container mx-auto relative">
+        <Flex className="flex items-center justify-between h-full">
+          <Link to="/">
+            <div>
+              <Image className="w-20 object-cover" imgSrc={logo} />
+            </div>
+          </Link>
+          <div>
+            {showMenu && (
+              <motion.ul
+                initial={{ y: 30, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ duration: 0.5 }}
+                className="hidden md:flex items-center w-auto z-50 p-0 gap-2"
               >
-                <Image imgSrc={menuBar} className={"w-5"} />
-                <Text
-                  as={"p"}
-                  text={"Shop by Category"}
-                  className={"text-menuTxtColor"}
-                />
-                {drop && (
-                  <div className="nav-links w-64 bg-menuTxtColor absolute top-8 -left-3 z-10">
-                    <Menu className={"text-dropDownMenuColor text-sm"}>
-                      <NavLink to={"/"}>
-                        <li className="px-5 py-4 border-b-2 border-dropDownBorderColor hover:text-white  hover:font-bold">
-                          Home
-                        </li>
-                      </NavLink>
+                {navBarList.map(({ _id, title, link }) => (
+                  <NavLink
+                    key={_id}
+                    className="flex font-normal hover:font-bold w-20 h-6 justify-center items-center px-12 text-base text-[#767676] underline-offset-[4px] decoration-[1px] hover:text-[#262626] md:border-r-[2px] border-r-gray-300 hoverEffect last:border-r-0"
+                    to={link}
+                    state={{ data: location.pathname.split("/")[1] }}
+                  >
+                    <li>{title}</li>
+                  </NavLink>
+                ))}
+              </motion.ul>
+            )}
 
-                      <NavLink to={"/shop"}>
-                        <li className="px-5 py-4 border-b-2 border-dropDownBorderColor hover:text-white hover:font-bold">
-                          Shop
-                        </li>
-                      </NavLink>
+            {/* Mobile Menu Icon */}
+            {!showMenu && (
+              <HiMenuAlt2
+                onClick={() => setSidenav(true)}
+                className="md:hidden cursor-pointer w-8 h-6 absolute top-6 right-4"
+              />
+            )}
 
-                      <NavLink to={"/about"}>
-                        <li className="px-5 py-4 border-b-2 border-dropDownBorderColor hover:text-white  hover:font-bold">
-                          About
+            {/* Mobile Sidebar Menu */}
+            {sidenav && (
+              <div className="fixed top-0 left-0 w-full h-screen bg-black text-gray-200 bg-opacity-80 z-50">
+                <motion.div
+                  initial={{ x: -300, opacity: 0 }}
+                  animate={{ x: 0, opacity: 1 }}
+                  transition={{ duration: 0.5 }}
+                  className="w-[80%] h-full relative"
+                >
+                  <div className="w-full h-full bg-primeColor p-6">
+                    <img className="w-28 mb-6" src={logoLight} alt="logoLight" />
+                    <ul className="text-gray-200 flex flex-col gap-2">
+                      {navBarList.map((item) => (
+                        <li
+                          className="font-normal hover:font-bold items-center text-lg text-gray-200 hover:underline underline-offset-[4px] decoration-[1px] hover:text-white md:border-r-[2px] border-r-gray-300 hoverEffect last:border-r-0"
+                          key={item._id}
+                        >
+                          <NavLink
+                            to={item.link}
+                            state={{ data: location.pathname.split("/")[1] }}
+                            onClick={() => setSidenav(false)}
+                          >
+                            {item.title}
+                          </NavLink>
                         </li>
-                      </NavLink>
-                      <NavLink to={"/contact"}>
-                        <li className="px-5 py-4 hover:text-white hover:font-bold">
-                          Contact
-                        </li>
-                      </NavLink>
-                    </Menu>
+                      ))}
+                    </ul>
+                    <div className="mt-4">
+                      <h1
+                        onClick={() => setCategory(!category)}
+                        className="flex justify-between text-base cursor-pointer items-center font-titleFont mb-2"
+                      >
+                        Shop by Category{" "}
+                        <span className="text-lg">{category ? "-" : "+"}</span>
+                      </h1>
+                      {category && (
+                        <motion.ul
+                          initial={{ y: 15, opacity: 0 }}
+                          animate={{ y: 0, opacity: 1 }}
+                          transition={{ duration: 0.4 }}
+                          className="text-sm flex flex-col gap-1"
+                        >
+                          <li className="headerSedenavLi">New Arrivals</li>
+                          <li className="headerSedenavLi">Gadgets</li>
+                          <li className="headerSedenavLi">Accessories</li>
+                          <li className="headerSedenavLi">Electronics</li>
+                          <li className="headerSedenavLi">Others</li>
+                        </motion.ul>
+                      )}
+                    </div>
+                    <div className="mt-4">
+                      <h1
+                        onClick={() => setBrand(!brand)}
+                        className="flex justify-between text-base cursor-pointer items-center font-titleFont mb-2"
+                      >
+                        Shop by Brand
+                        <span className="text-lg">{brand ? "-" : "+"}</span>
+                      </h1>
+                      {brand && (
+                        <motion.ul
+                          initial={{ y: 15, opacity: 0 }}
+                          animate={{ y: 0, opacity: 1 }}
+                          transition={{ duration: 0.4 }}
+                          className="text-sm flex flex-col gap-1"
+                        >
+                          <li className="headerSedenavLi">New Arrivals</li>
+                          <li className="headerSedenavLi">Gadgets</li>
+                          <li className="headerSedenavLi">Accessories</li>
+                          <li className="headerSedenavLi">Electronics</li>
+                          <li className="headerSedenavLi">Others</li>
+                        </motion.ul>
+                      )}
+                    </div>
                   </div>
-                )}
+                  <span
+                    onClick={() => setSidenav(false)}
+                    className="w-8 h-8 border-[1px] border-gray-300 absolute top-2 -right-10 text-gray-300 text-2xl flex justify-center items-center cursor-pointer hover:border-red-500 hover:text-red-500 duration-300"
+                  >
+                    <MdClose />
+                  </span>
+                </motion.div>
               </div>
-              <div className="search-bar w-[600px] bg-white relative">
-                <input
-                  type="text"
-                  placeholder="Search Products"
-                  className="w-full py-4 px-5 border-none outline-none text-inputColor"
-                />
-                <FaSearch className="absolute right-4 top-1/2 -translate-y-1/2" />
-              </div>
-              <div className="header-icons flex items-center space-x-10 text">
-                <div
-                  className="flex items-center space-x-[5px] cursor-pointer relative"
-                  onClick={() => setAccDrop(!accDrop)}
-                >
-                  <FaUser />
-                  <IoMdArrowDropdown />
-                  {accDrop && (
-                    <div className="my-account w-52 text-sm absolute right-0 top-8 z-10">
-                      <Button
-                        bText={"My Account"}
-                        className={
-                          "py-4 w-full bg-myAccBg text-white hover:font-bold"
-                        }
-                      />
-                      <Button
-                        bText={"Log Out"}
-                        className={
-                          "py-4 w-full bg-white text-menuTxtColor hover:font-bold"
-                        }
-                      />
-                    </div>
-                  )}
-                </div>
-                <div
-                  className="nav-cart relative cursor-pointer"
-                  onClick={() => setCartDrop(!cartDrop)}
-                >
-                  <FaShoppingCart />
-                  {cartDrop && (
-                    <div className="cart-dropDown absolute right-0 top-8 z-10">
-                      <div className="w-96">
-                        <Image imgSrc={CartPopUp} className={"w-full"} />
-                      </div>
-                    </div>
-                  )}
-                </div>
-              </div>
-            </Flex>
-          </Container>
-        </div>
-      </div>
-    </>
+            )}
+          </div>
+        </Flex>
+      </nav>
+    </div>
   );
 };
 

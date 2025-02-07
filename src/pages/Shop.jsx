@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import Container from "../components/Container";
 import Heading from "../components/Heading";
 import Product from "../components/Product";
-// import productData from "../utils/data";
 import Skeleton from "../components/Skeleton";
+import { Link } from "react-router";
 
 
 const Shop = () => {
@@ -16,7 +16,7 @@ const Shop = () => {
       }, [])
     
       const fetchData = async () => {
-        const data = await fetch("https://fakestoreapi.com/products")
+        const data = await fetch(`https://fakestoreapi.com/products`)
         const resData = await data.json()
         setListOfProduct(resData)
         setFilterProduct(resData)
@@ -49,9 +49,9 @@ const Shop = () => {
                 </div>
 
                 <div className="flex flex-wrap gap-5">
-                    {listOfProduct.map((product) => (
+                    {filterProduct.map((product) => (
                         <div key={product.id} className="w-[24%]">
-                            <Product title={product.title} price={product.price} imgSrc={product.image} badgeText={"New"} className={""} />
+                            <Link to={`/product/${product.id}`}><Product title={product.title} price={product.price} imgSrc={product.image} badgeText={"New"} /></Link>
                         </div>
                     ))}
                 </div>

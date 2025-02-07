@@ -1,4 +1,3 @@
-
 import Image from "./Image";
 import Badge from "./Badge";
 import Heading from "./Heading";
@@ -6,11 +5,11 @@ import Text from "./Text";
 import { FaHeart, FaShoppingCart } from "react-icons/fa";
 import { FaCodeCompare } from "react-icons/fa6";
 
-const Product = ({imgSrc, badgeText, className, onClick, title, price}) => {
+const Product = ({ imgSrc, badgeText, className, onClick, title, price }) => {
   return (
     <>
       <div id="product" className={`relative font-primary text-navColor group  ${className}`}>
-        <Image imgSrc={imgSrc} className={' h-[420px] object-contain w-full'}/>
+        <Image imgSrc={imgSrc} className={' h-[420px] object-contain w-full'} />
         <Badge badgeText={badgeText} className={"absolute top-5 left-5"} />
         <div className="product-details py-7 flex justify-between">
           <Heading
@@ -40,3 +39,4 @@ const Product = ({imgSrc, badgeText, className, onClick, title, price}) => {
 };
 
 export default Product;
+
